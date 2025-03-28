@@ -1,0 +1,309 @@
+---
+title: "Assignment 4"
+author: "aditya venugopalan a1899824"
+date: "2023-10-26"
+output: pdf_document
+---
+
+
+# Excecutive summary
+#1.1 Project Outline
+#In this universe one of the basic things that is required for living is water. MWC is given the responsibilty make sure water is availbe in the city of Melbourne, Australia. The main motivation behind this project is to understand the relationship between  evaporation rate  in a day , amount of sunlight hours and the maximum speed of wind(gust of wind) in kmph, the minimum temperature as well as the maximum temperature and the relative humidity at 9 am. This report analysis will help the Melbourne Water Corporation(MWC) to have some insights on estimating the rate of evaporation at their reservoirs and help them understand is there any factors affecting the evaporation rate at any given day.
+
+
+# 1.2 Approach
+# We have done the analysis on the obtained dataset , which conisisted some data on random samples of Melbourne's weather observations and evaporation for the financial year of 2018-2019. This report also includes the the relation which will answer the queries asked by the MWC. Multiple statistical modles were developed in order to understand whether the rate of evaporation is affected by some factors or not.
+
+# 1.3 Findings
+
+# Month: After evaluation we were able to find that the aamount of evaporation which we have termed as evaporation rate is comparetively higher in the months of January, March, April , November and December . And because of this we were able to conclude that there is a significant relationship observed between the evaporation rate and the months.
+
+# Day Of Week: We were able to observe the fact that the day of the week didn't have much influence on the rate of evaporation significantly and hence no relationship can be seen .
+
+# Number of hours of bright sunlight: 
+#Even in the case of number of hours of sunlight we are unable any effects caused by the number of hours of bright sunlight as they form no relationship.
+
+# Speed of the maximum wind gust in kilometer per hour. We can see the speed of gust of wind is a significant factor while predicting the rate of evaporation. We can see a moderate positive linear relationship. For every 1km/h increase in speed of maximum wind gust will increase in 0.522 mm increase in rate of evaporation.
+
+# Minimum temperature in degree Celsius : It was observed that minimum temperature is significantly important for the purpose of prediction of amount of evaporation. The coreresponding figure also displays postive linear relationship.For every 1 C increase in the minimum temperature will  cause a 0.329 mm increase in the evaporation amount.
+
+# Relative humidity (measured at 9am): This is a unique case as we can see a significant negative relationship is developed between humidity and rate of evaporation . for every increase in humidity will cause decrease in 0.084 mm in amount of evaporation
+
+# Recommendations 
+
+# Based on my analyis , we can say with 95% confidence that on december 26th 2024 and January 11 2024 , Cardinia Reservoir will have more than 9mm of evaporation , which should motivate the MWC to make temproray measures to ensure continuous supply of water which also means they should consider transferring the water from the Silvan Reservoir upstream.
+
+
+# METHODS
+# 2.1 Software used
+# In this section, I'll be analyzing a random sampled dataset of Melbourne's weather observations devleoped by the Melbourne Water Corporation("MWC") in order to understand the evaporation rate from the reservoir called Cardina Reservoir . The analysis was successfull with the help of Rstudio.
+
+# 2.2 Dataset used
+# In this particular section we will be able to observe and understand how varaibles such as (a) Month, (b) Day of the week, (c)Number of hours of bright sunlight, (d) Speed of the maximum wind gust in kilometers per hour (e) Minimum temperature in degree Celsius (f) Relative humidity , as measured at 9am. 
+#After the information is obtained from the bivariate analysis , we can say that the prediction model is built and tested for all the assumptions 
+
+#2 .3 Bivarite Summary
+
+# Month : In the  figure 1: which tell us relation of rate of evaporation against month , we can see spread of few months March , April , September and November to be wider and the location higher than 9. In the case of January,February,March April , and November and December we can see few outliers, which tells us there is a significant relationship
+# Day of the week: In the figure 2 the boxplot tells us the spread with is quite same with all the days of the week and location not showing varaince among the days and there is no significant relationship observed.
+# Sunlight hours: Figure 3 is a scatterplot which shows us no significant relationship due to random scattering of points
+# Maximum speed of wind gust(kmph): Even though the name of this varaible was slighlty changed for better presentation , we can still observe that there is a moderate linear positive relationship betwwen rate or amount of evaporation against the maximum speed of wind.
+# Minimum Temperature (in c): The figure 5 which is a scatterplot which tells us a postive relationship betwwen the rate of evaporation agaoinst minimum temperature.
+# Relative humidity: The figure number 6 displays a sytong positive relationship between evaporation and humidity when measuread at 9 am
+
+# Model selection
+# We will begin with a model which has all the possible predictor for the response variable . We also used the Anova() function from the "car" package and calculated the p-value for predictor and found out that the varaible sunlight hours  didnt had enough significance  was removed.
+
+# After exculding sunlight hours , second model was created and we realise that the Sunlight hours didnt have enough significance and hence it was removed 
+
+
+# In our third model after excluding sunlight hours temperature we got to know the varaible maximum temperature had highest p value , therefore it was removed as well
+
+# In our fourth model after excluding maximum temperature we got to know the varaible weekday had highest p value , therefore it was removed as well
+
+
+# Model Diagnostics
+
+# Linearity
+
+# when we go from left to right, we cannot see any trend in the residuals vs fitted plot. Hence we can conclude the fact that Linearity is justified
+
+# Homoscedasticity
+
+# On observing the plot we can see there is an increase in spread as we go from left to right, which tells us the assumption of Homoscedasticity is not justified.
+
+# Normality
+
+# It is very easy for us to conclude from the above figure that the assumption of normality is justified as points on the normal q-q plot follow the reference line even after there are some points not on the right-upper tail.
+
+# Independence
+
+# Independence in this case is not justified since the samples were taken in the year 2018-19. Which means , subjects can be or cannot be dependent since one day's weather will affect the next one. 
+
+# Results
+
+# In our analysis with the the help of statistical model, we found that the intercept is 6.358 mm and the amount of evaporation is manipulated such a way that the 1% increase in the relative humidity will decrease by 0.084 mm. While in the case of minimum temperature, rate of evaporation will increase by 0.329 if temperature increases by 1c. And in the case of maximum gust of speed of wind there is a increase rate of evaporation by 0.0522
+
+
+# Discussion 
+
+# With the help of our statistical model we predicted that on feburary 21, 2024 on given weather observations, the rate of evaporation is 5.2 mm an the interval is between 0.8mm to 9.5mm.on december 12, 2024 on given weather observations, the rate of evaporation is 14.4 mm an the interval is between 9.7mm to 19.2mm.on january 1, 2024 on given weather observations, the rate of evaporation is 14.4 mm an the interval is between 9.7mm to 19.2mm.on july 07, 2024 on given weather observations, the rate of evaporation is 5.2 mm an the interval is between 0.8mm to 9.5mm.
+# Hence we poredict that with confidence of 95% that on december and january the rate of evaporation will be more than 9mm and the Cadinia Reservior will require the corporation to take temporary meeasures for continuous supply of water throgh Silvan Reservoir. While the other months have low amount of evaporation and hence no measures required.
+
+# Conclusion:Finally we can conclude that that the report is focused on developing a model which can predict the amount of evaporation on any day of the week using weather observation. We are successfull in determing the fact that varaibles variable month,speed of maximum wind gust, minimum temperature and the relative humidity are significant factors. LAST but not the least we predicted that on feburary 21, 2024 on given weather observations, the rate of evaporation is 5.2 mm an the interval is between 0.8mm to 9.5mm.on december 12, 2024 on given weather observations, the rate of evaporation is 14.4 mm an the interval is between 9.7mm to 19.2mm.on january 1, 2024 on given weather observations, the rate of evaporation is 14.4 mm an the interval is between 9.7mm to 19.2mm.on july 07, 2024 on given weather observations, the rate of evaporation is 5.2 mm an the interval is between 0.8mm to 9.5mm. And hence  we poredict that with confidence of 95% that on december and january the rate of evaporation will be more than 9mm and the Cadinia Reservior will require the corporation to take temporary meeasures for continuous supply of water throgh Silvan Reservoir. While the other months have low amount of evaporation and hence no measures required.
+
+#Appendix
+
+```{r}
+#Loading the required libraries
+library(tidyverse)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(inspectdf)
+library(stringr)
+library(readr)
+library(forcats)
+library(ggthemes)
+library(caret)
+library(lubridate)
+library(car)
+```
+```{r}
+#importing the dataset on which we will perform analysis
+melbourne <- read.csv("melbourne.csv")
+head(melbourne)
+```
+```{r}
+# Here i will try to eliminate or remove some data which are irrelevant and not required for anlayis
+melbourne <- melbourne %>%
+  mutate(Date = ymd(Date)) %>%
+  mutate(month = as_factor(month(Date)),
+         `X9am.wind.speed..km.h.` = as.integer(str_replace(`X9am.wind.speed..km.h.`, "Calm", "0")),
+         weekday = as_factor(wday(Date)))
+melbourne <- melbourne %>%
+rename(minimum_temperature = 'Minimum.temperature..Deg.C.',
+maximum_temperature = 'Maximum.Temperature..Deg.C.',
+humidity_9am = 'X9am.relative.humidity....',
+evaporation_rate = 'Evaporation..mm.',
+Sunlight_hours = "Sunshine..hours.",
+Maximum_speed_gust_of_wind= "Speed.of.maximum.wind.gust..km.h.")
+
+head(melbourne)
+```
+```{r}
+#continuing the cleaning of data. Now i'll remove the missing data but first i would love to show how many missing values are present in the data
+inspect_na(melbourne)
+```
+```{r}
+#As mentioned earlier i will not hesitate to remove the values or data which will might cause some trouble for us to understand my analysis. I would here highlight that since the observations which have missing values are comparatively low we can remove them as it wont affect too much.
+melbourne <- na.omit(melbourne)
+head(melbourne)
+```
+```{r}
+#Since we have extracted variables with their proper names . Its time to start our first analysis , that is evaporation against months. A boxplot will be used for this operation.
+#FIGURE 1
+ggplot(melbourne, aes(x= month, y = evaporation_rate)) +
+  geom_boxplot(aes(fill = month))+
+  theme_bw() +
+  labs(caption = "Figure 1: Boxplot showing evaporation rate in relation against month")+
+  theme(plot.caption = element_text(hjust = 0.5))
+
+
+```
+
+
+
+```{r}
+# Figure 2.Now we will have a look how evaporation looks against weekday. 
+ggplot(melbourne, aes(x= weekday, y = evaporation_rate)) +
+  geom_boxplot(aes(fill = weekday))+
+  theme_bw() + 
+  labs(caption = " Figure 2: Boxplot showing evaporation rate in relation against weekday  ")
+```
+```{r}
+#Figure 3. A boxplot which will help us to understand the relation of evaporation rate against Number of hours of bright sunlight
+ggplot(melbourne, aes(x= Sunlight_hours, y= evaporation_rate)) +
+  geom_point() + 
+  theme_bw() +
+  labs(caption = " Figure 3: A scatterplot showing relation of evaporation rate against Number of hours of bright sunlight") +
+  theme(plot.caption = element_text(hjust = 0.5))
+```
+```{r}
+# Figure 4
+ggplot(melbourne, aes(x = Maximum_speed_gust_of_wind, y = evaporation_rate)) +
+  geom_point() +
+  theme_bw() +
+  labs(caption = " Figure 4: Scatterplot showing evaporation rate in relation against Speed of the maximum wind gust in kilometers per hour  ") +
+  theme(plot.caption = element_text(hjust = 0.5))
+```
+```{r}
+# Figure 5
+ggplot(melbourne, aes(x = minimum_temperature, y = evaporation_rate)) +
+  geom_point() +
+  theme_bw() +
+  labs(caption = " Figure 5: Scatterplot showing evaporation rate in relation against Minimum Temperataure  ") +
+  theme(plot.caption = element_text(hjust = 0.5))
+```
+
+```{r}
+# Figure 6. A scatterplot showing relation of evaporation rate against Relative humidity, as measured at 9am.
+ggplot(melbourne, aes(x= humidity_9am, y= evaporation_rate)) +
+  geom_point() + 
+  theme_bw() +
+  labs(caption = " Figure 6: A scatterplot showing relation of evaporation rate against Relative humidity, as measured at 9am") +
+  theme(plot.caption = element_text(hjust = 0.5))
+```
+
+```{r}
+# I will begin will fitting the full model with all possible predictors
+lm_melbourne <- lm(evaporation_rate ~ month +
+                      weekday+
+                     Sunlight_hours +
+                     Maximum_speed_gust_of_wind+
+                     maximum_temperature + 
+                     minimum_temperature + 
+                     humidity_9am + 
+                     month: humidity_9am, 
+                    data=melbourne )
+Anova(lm_melbourne)
+                     
+
+```
+
+```{r}
+# from the above observations, we can conclude that "Sunlight_hours " has the highest p-value , therefore we will not include it in our second model
+
+lm_melbourne2 <- lm(evaporation_rate ~ month +
+                      weekday+
+                     Maximum_speed_gust_of_wind+
+                     maximum_temperature + 
+                     minimum_temperature + 
+                     humidity_9am + 
+                     month: humidity_9am, 
+                    data=melbourne )
+Anova(lm_melbourne2)
+```
+
+```{r}
+#from the above observations and calculations we can conclude that "maximum_temperature" has highest p value, therefore we will remove it in our third model.
+lm_melbourne3 <- lm(evaporation_rate ~ month +
+                      weekday+
+                     Maximum_speed_gust_of_wind+
+                     minimum_temperature + 
+                     humidity_9am + 
+                     month: humidity_9am, 
+                    data=melbourne )
+Anova(lm_melbourne3)
+```
+
+```{r}
+#from the above observations and calculations we can conclude that "weekday" has highest p value, therefore we will remove it in our fourth model.
+```
+```{r}
+lm_melbourne4 <- lm(evaporation_rate ~ month +
+                     Maximum_speed_gust_of_wind+
+                     minimum_temperature + 
+                     humidity_9am + 
+                     month: humidity_9am, 
+                    data=melbourne )
+Anova(lm_melbourne4)
+```
+```{r}
+summary(lm_melbourne4)
+```
+
+# All terms are hence significant.
+# It can be observed that all varaibles behaved as expected from the relationship observed in Bivariate analysis.
+
+
+##linearity
+
+```{r}
+plot(lm_melbourne4, which = 1, sub= "Testing linearity for the linear model predicting the evaporation")
+```
+
+#Homoscedasticity
+
+```{r}
+plot(lm_melbourne4, which = 3, sub= "Testing homoscedasticity for the linear model predicting the evaporation")
+```
+
+##Normality
+
+```{r}
+plot(lm_melbourne4, which=2, sub= "Testing normality for the linear model predicting the evaporation")
+```
+
+# Prediction
+
+```{r}
+predicted_melbourne = tibble(date=dmy(c("21/2/2024",
+
+"26/12/2024", "11/1/2024","11/7/2024")),
+
+month=as_factor(c(2,12,1,7)),
+Maximum_speed_gust_of_wind= c(23.2,76,44.3,10.6),
+minimum_temperature= c(13.8, 16.4, 26.5, 6.8),
+humidity_9am = c(74,37,35,76),
+Sunlight_hours = c(3.4,9,9.6,4),
+weekday=wday(dmy(c("21/2/2024", "26/12/2024",
+"11/1/2024", "11/7/2024"))))
+predicted_melbourne = predicted_melbourne[c(3,1,4,2),]
+predicted_melbourne
+```
+
+
+```{r}
+predicted_interval <- predict(lm_melbourne4, predicted_melbourne, interval = "prediction", level=0.95)
+predicted_interval <- tibble(Date = predicted_melbourne$date,
+'Lower_Bound' = predicted_interval[,2],
+'Expected evaporation Rate' = predicted_interval[,1],
+'Upper_Bound' = predicted_interval[,3] )
+predicted_interval %>%
+knitr::kable(digits = 1,format.args=list(big.mark= ","),
+caption = "Table 1: Prediction of intervals of the  evaporation rates in Melbourne on specific dates as requested by  Melbourne Water Corporation")
+
+
+```
+
